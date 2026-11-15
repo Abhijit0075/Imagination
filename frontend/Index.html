@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Imagination-HomePage</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <header>
+        <!-- NAVBAR: dashboard menu added -->
+        <nav id="navbar">
+
+            <div class="nav-left">
+                <button class="dashboard-menu-btn"
+                        id="dashboardMenuBtn"
+                        aria-label="Open dashboard menu"
+                        aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div id="logo-container">
+                    <img src="Screenshot 2026-09-27 175750.png" alt="Logo">
+                    <h2>Imagination</h2>
+                </div>
+            </div>
+
+            <div class="right">
+                <!-- Auth-aware: shows Login or Dashboard link -->
+                <div id="authButtons">
+                    <button class="button">
+                        <a href="LogIn.html">Login</a>
+                    </button>
+                </div>
+            </div>
+
+        </nav>
+
+        <hr>
+
+        <!-- DASHBOARD SIDEBAR -->
+        <div class="dashboard-overlay" id="dashboardOverlay"></div>
+
+        <aside class="dashboard-sidebar" id="dashboardSidebar">
+
+            <div class="dashboard-sidebar-heading">
+                <span>YOUR WORKSPACE</span>
+
+                <button class="dashboard-close-btn"
+                        id="dashboardCloseBtn"
+                        aria-label="Close dashboard menu">
+                    &times;
+                </button>
+            </div>
+
+            <div class="dashboard-profile">
+                <div class="dashboard-profile-icon">∑</div>
+                <div>
+                    <h3>Imagination</h3>
+                </div>
+            </div>
+
+            <nav class="dashboard-sidebar-nav">
+
+                <a href="index.html" class="dashboard-nav-link active">
+                    <span class="dashboard-nav-icon">⌂</span>
+                    <span>Home</span>
+                </a>
+
+                <a href="Dashboard.html#dashboard" class="dashboard-nav-link">
+                    <span class="dashboard-nav-icon">▦</span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="Practice.html" class="dashboard-nav-link">
+                    <span class="dashboard-nav-icon">✎</span>
+                    <span>Practice</span>
+                </a>
+
+                <a href="Dashboard.html#leaderboard" class="dashboard-nav-link">
+                    <span class="dashboard-nav-icon">♛</span>
+                    <span>Leaderboard</span>
+                </a>
+
+                <a href="Syllabus.html" class="dashboard-nav-link">
+                    <span class="dashboard-nav-icon">▤</span>
+                    <span>Maths Syllabus</span>
+                </a>
+                <a href="Dashboard.html#schedule" class="dashboard-nav-link">
+                    <span class="dashboard-nav-icon">◷</span>
+                    <span>Schedule</span>
+                </a>
+
+            </nav>
+
+            <div class="dashboard-sidebar-bottom">
+                <p>Imagination<br><strong>Where logic meets ambition</strong></p>
+            </div>
+
+        </aside>
+
+        <!-- MAIN HEADER -->
+        <div id="main-header">
+
+            <div class="left-side">
+
+                <div id="big-text">
+                    <span class="grad-text">Learn with Imagination,</span><br>
+                    <span>Where Logic Meets Ambition</span><br>
+                </div>
+
+                <div id="overview">
+
+                    <div class="overview-items">
+                        <h4>150+</h4>
+                        <h4>Active Students</h4>
+                    </div>
+
+                    <div class="overview-items">
+                        <h4>200+</h4>
+                        <h4>Live hours</h4>
+                    </div>
+
+                    <div class="overview-items">
+                        <h4>100%</h4>
+                        <h4>Success Rate</h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="right-side">
+                <img src="bozhin-karaivanov-5z70PsbFCMM-unsplash.jpg"
+                     alt="Mathematics learning">
+            </div>
+
+        </div>
+    </header>
+
+    <!-- DASHBOARD MENU JAVASCRIPT -->
+    <script>
+        const dashboardMenuBtn = document.getElementById("dashboardMenuBtn");
+        const dashboardSidebar = document.getElementById("dashboardSidebar");
+        const dashboardOverlay = document.getElementById("dashboardOverlay");
+        const dashboardCloseBtn = document.getElementById("dashboardCloseBtn");
+
+        function openDashboardMenu() {
+            dashboardSidebar.classList.add("sidebar-open");
+            dashboardOverlay.classList.add("overlay-visible");
+            dashboardMenuBtn.setAttribute("aria-expanded", "true");
+            document.body.classList.add("dashboard-menu-open");
+        }
+
+        function closeDashboardMenu() {
+            dashboardSidebar.classList.remove("sidebar-open");
+            dashboardOverlay.classList.remove("overlay-visible");
+            dashboardMenuBtn.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("dashboard-menu-open");
+        }
+
+        dashboardMenuBtn.addEventListener("click", () => {
+            if (dashboardSidebar.classList.contains("sidebar-open")) {
+                closeDashboardMenu();
+            } else {
+                openDashboardMenu();
+            }
+        });
+
+        dashboardCloseBtn.addEventListener("click", closeDashboardMenu);
+        dashboardOverlay.addEventListener("click", closeDashboardMenu);
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeDashboardMenu();
+            }
+        });
+
+        document.querySelectorAll(".dashboard-nav-link").forEach(link => {
+            link.addEventListener("click", () => {
+                closeDashboardMenu();
+            });
+        });
+
+        /* Dynamic Auth State Navbar */
+        (async function checkLogin() {
+            const token = localStorage.getItem('imagination_token');
+            const authButtons = document.getElementById("authButtons");
+            if (!token) return;
+
+            try {
+                const res = await fetch('/api/auth/me', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.user && data.user.status === 'approved') {
+                        const firstName = (data.user.name || 'User').split(' ')[0];
+                        authButtons.innerHTML = `
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <span style="font-size:13px; font-weight:600; color:#526078;">Hi, ${firstName}</span>
+                                <a href="Dashboard.html" class="button" style="text-decoration:none; display:inline-block; padding:10px 20px;">
+                                    <span style="color:white;">Dashboard</span>
+                                </a>
+                            </div>
+                        `;
+                    }
+                }
+            } catch (_) {}
+        })();
+    </script>
+
+    <footer class="footer">
+        <p>© 2026 Imagination. Learn smarter, achieve more.</p>
+    </footer>
+
+</body>
+</html>

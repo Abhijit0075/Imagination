@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE Mathematics Practice | Imagination</title>
+    <link rel="stylesheet" href="practice.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div id="logo-container">
+            <img src="Screenshot 2026-09-27 175750.png" alt="Logo">
+            <a href="index.html" class="logo">
+                Imagination<span></span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="Dashboard.html#dashboard">Dashboard</a>
+            <a href="Practice.html" class="active">Practice</a>
+            <a href="Syllabus.html">Syllabus</a>
+        </div>
+        <div class="nav-right">
+            <button class="nav-logout-btn" onclick="logout()">Sign Out</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+
+        <!-- ==========================================
+             1. CHAPTER SELECTION VIEW
+             ========================================== -->
+        <section id="chaptersView">
+            <div class="page-heading">
+                <span class="eyebrow">TOPIC-WISE PROBLEM BANK</span>
+                <h1>JEE Mathematics <span>Practice</span></h1>
+                <p>Choose any Maths JEE chapter to start practicing. Attempt Single Choice, Multiple Choice, and Numerical questions with instant answer feedback.</p>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="category-filter-bar">
+                <button class="cat-btn active" data-cat="all">All Topics</button>
+                <button class="cat-btn" data-cat="Calculus">Calculus</button>
+                <button class="cat-btn" data-cat="Algebra">Algebra</button>
+                <button class="cat-btn" data-cat="Coordinate Geometry">Coordinate Geometry</button>
+                <button class="cat-btn" data-cat="Vectors & 3D">Vectors & 3D</button>
+                <button class="cat-btn" data-cat="Trigonometry">Trigonometry</button>
+            </div>
+
+            <!-- Chapters Grid Container -->
+            <div class="chapters-grid" id="chaptersGrid">
+                <div class="empty-state">Loading chapters…</div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             2. INTERACTIVE PRACTICE ARENA
+             ========================================== -->
+        <section id="practiceArena">
+            <div class="arena-header">
+                <button class="btn-back-chapters" id="btnBackToChapters">← Choose Another Chapter</button>
+                <span class="arena-score-pill" id="arenaScoreBadge">Score: 0 Correct</span>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <span class="eyebrow" id="arenaChapterTitle">Chapter Name</span>
+            </div>
+
+            <!-- Question Card -->
+            <div class="question-box">
+                <div id="questionContainer">
+                    <!-- Injected dynamically by practice.js -->
+                </div>
+
+                <!-- Instant Evaluation Feedback & Solution Banner -->
+                <div id="feedbackBox" class="feedback-box">
+                    <!-- Populated dynamically upon submitting answer -->
+                </div>
+
+                <!-- Action Controls -->
+                <div class="arena-actions" id="arenaActions">
+                    <button type="button" class="nav-q-btn" id="btnPrevQ">← Previous</button>
+                    <button type="button" class="btn-submit-answer" id="btnSubmitAnswer">Submit Answer</button>
+                    <button type="button" class="nav-q-btn" id="btnNextQ">Next Question →</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        © 2026 Imagination. Learn smarter, achieve more.
+    </footer>
+
+    <!-- Scripts -->
+    <script src="auth.js"></script>
+    <script src="practice.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Imagination</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <!-- Top Navbar -->
+    <header class="navbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Open dashboard menu"
+                aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <a href="index.html" class="logo">Imagination<span></span></a>
+
+        <!-- Auth-aware navbar right -->
+        <div class="nav-right" id="navRight">
+            <span class="user-greeting" id="userGreeting"></span>
+            <button class="nav-logout-btn" id="navLogoutBtn">Sign Out</button>
+        </div>
+    </header>
+
+    <!-- Sidebar Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Left Dashboard Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-heading">
+            <span>YOUR WORKSPACE</span>
+            <button class="close-btn" id="closeBtn" aria-label="Close menu">×</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">⌂</span> Home
+            </a>
+
+            <a href="#dashboard" class="nav-item" data-page="dashboard">
+                <span class="nav-icon">▦</span> Dashboard
+            </a>
+
+            <a href="#practice" class="nav-item">
+                <span class="nav-icon">✎</span> Practice
+            </a>
+
+            <a href="#leaderboard" class="nav-item">
+                <span class="nav-icon">♛</span> Leaderboard
+            </a>
+
+            <a href="#syllabus" class="nav-item active" data-page="syllabus">
+                <span class="nav-icon">▤</span> JEE Maths Syllabus
+            </a>
+
+            <a href="#planner" class="nav-item" data-page="planner">
+                <span class="nav-icon">▦</span> Lecture Planner
+            </a>
+
+            <a href="#schedule" class="nav-item">
+                <span class="nav-icon">◷</span> Schedule
+            </a>
+
+            <!-- Admin-only link (hidden for students) -->
+            <a href="admin.html" class="nav-item admin-only-link" id="adminNavLink" style="display:none;">
+                <span class="nav-icon">⚙</span> Admin Panel
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-note">
+                <span class="note-symbol">∑</span>
+                <p>One concept at a time.<br><strong>Keep progressing.</strong></p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ============= DASHBOARD PAGE ============= -->
+        <section class="page active" id="dashboard">
+            <div class="page-heading">
+                <span class="eyebrow">YOUR WORKSPACE</span>
+                <h1>Your <span>Dashboard</span></h1>
+                <p>Welcome back! Here are the latest updates and class links from your teachers.</p>
+            </div>
+
+            <!-- Admin Quick Actions (visible only to teachers/admins) -->
+            <div class="admin-quick-actions" id="adminQuickActions" style="display:none;">
+                <a href="admin.html" class="admin-action-card">
+                    <span class="admin-action-icon">👥</span>
+                    <div>
+                        <h3>Manage Students</h3>
+                        <p>Approve or reject student registrations</p>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </a>
+                <a href="admin.html" class="admin-action-card">
+                    <span class="admin-action-icon">📢</span>
+                    <div>
+                        <h3>Post Announcement & Links</h3>
+                        <p>Share class links and important study notices</p>
+                    </div>
+                    <span class="action-arrow">→</span>
+                </a>
+            </div>
+
+            <!-- Announcements Section (visible to approved students & admins) -->
+            <div class="announcements-section">
+                <div class="announcements-heading">
+                    <h2>📢 Announcements & Class Links</h2>
+                    <p>Important updates and lecture links posted by your teachers</p>
+                </div>
+                <div id="dashboardAnnouncements" class="dashboard-announcements">
+                    <div class="loading-state">Loading announcements from database…</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- JEE Mathematics Syllabus Page -->
+        <section class="page" id="syllabus">
+            <div class="page-heading">
+                <span class="eyebrow">YOUR LEARNING JOURNEY</span>
+                <h1>JEE Mathematics <span>Syllabus</span></h1>
+                <p>Explore the complete JEE Mathematics syllabus and plan your preparation topic by topic.</p>
+            </div>
+
+            <a href="pdfs/jee-maths-syllabus.pdf"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="syllabus-card">
+
+                <div class="syllabus-icon">∑</div>
+
+                <div class="syllabus-info">
+                    <span class="card-label">JEE MAIN & ADVANCED</span>
+                    <h2>Complete Mathematics Syllabus</h2>
+                    <p>
+                        View the complete syllabus, including Algebra,
+                        Calculus, Coordinate Geometry, Trigonometry,
+                        Vectors and other mathematics topics.
+                    </p>
+                    <span class="pdf-link">Open Syllabus PDF <span>↗</span></span>
+                </div>
+
+                <div class="card-arrow">↗</div>
+            </a>
+
+            <div class="tip-card">
+                <span class="tip-icon">✦</span>
+                <div>
+                    <h3>Study tip</h3>
+                    <p>Complete the concepts, practise questions and revise regularly.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lecture Planner Page -->
+        <section class="page" id="planner">
+            <div class="page-heading">
+                <span class="eyebrow">PLAN YOUR PREPARATION</span>
+                <h1>Lecture <span>Planner</span></h1>
+                <p>Organise your mathematics lectures and keep track of your progress.</p>
+            </div>
+
+            <div class="planner-card">
+                <div class="planner-title">
+                    <div>
+                        <span class="card-label">YOUR STUDY PLAN</span>
+                        <h2>Lecture Planner</h2>
+                    </div>
+                    <span class="planner-symbol">▦</span>
+                </div>
+
+                <form id="lectureForm">
+                    <label for="lectureName">Lecture / Topic Name</label>
+                    <input id="lectureName" type="text"
+                           placeholder="e.g. Limits and Continuity" required>
+
+                    <div class="form-row">
+                        <div>
+                            <label for="lectureDate">Study Date</label>
+                            <input id="lectureDate" type="date" required>
+                        </div>
+
+                        <div>
+                            <label for="lectureTime">Time</label>
+                            <input id="lectureTime" type="time" required>
+                        </div>
+                    </div>
+
+                    <label for="lectureNotes">Notes (optional)</label>
+                    <textarea id="lectureNotes"
+                              placeholder="Add your revision notes or goals"></textarea>
+
+                    <button type="submit" class="primary-btn">+ Add Lecture</button>
+                </form>
+
+                <div class="lecture-list-heading">
+                    <h3>My Lectures</h3>
+                    <span id="lectureCount">0 lectures</span>
+                </div>
+
+                <div id="lectureList" class="lecture-list">
+                    <p class="empty-state">No lectures planned yet. Add your first lecture above.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice page -->
+        <section class="page placeholder-page" id="practice">
+            <div class="page-heading">
+                <span class="eyebrow">QUESTION BANK</span>
+                <h1>Mathematics <span>Practice</span></h1>
+                <p>Welcome to the Mathematics practice area. Solve problems chapter by chapter.</p>
+            </div>
+            <div class="tip-card" style="max-width: 680px; margin: 0 auto;">
+                <span class="tip-icon">✏️</span>
+                <div>
+                    <h3>Active Practice Portal</h3>
+                    <p>Students can solve mock problems, review formulas, and track lecture planners daily.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="page placeholder-page" id="leaderboard">
+            <div class="page-heading">
+                <span class="eyebrow">STUDENT RANKINGS</span>
+                <h1>Leaderboard</h1>
+                <p>Track test rankings and math score milestones with other students.</p>
+            </div>
+        </section>
+
+        <section class="page placeholder-page" id="schedule">
+            <div class="page-heading">
+                <span class="eyebrow">TIMETABLE</span>
+                <h1>Schedule</h1>
+                <p>View upcoming live mathematics classes and doubt-clearing sessions.</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            © 2026 Imagination. Learn smarter, achieve more.
+        </footer>
+    </main>
+
+    <!-- Client-side Auth Guard & Dashboard Scripts -->
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

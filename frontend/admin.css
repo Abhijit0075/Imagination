@@ -1,0 +1,481 @@
+/* ============================================================
+   admin.css  –  Admin Panel Styles
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #2563EB;
+    --dark-blue: #1D4ED8;
+    --light-blue: #EFF6FF;
+    --text: #172033;
+    --muted: #64748B;
+    --border: #E2E8F0;
+    --white: #FFFFFF;
+    --green: #16A34A;
+    --red: #DC2626;
+    --orange: #F59E0B;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #F8FAFF;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+    height: 76px;
+    padding: 0 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: white;
+    border-bottom: 1px solid #E8EEF8;
+}
+
+.nav-left { display: flex; align-items: center; gap: 16px; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+
+.logo {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+    text-decoration: none;
+}
+.logo span { color: var(--blue); }
+
+.admin-badge {
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: var(--blue);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.admin-email {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.logout-btn {
+    padding: 9px 18px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.logout-btn:hover {
+    background: #FEE2E2;
+    border-color: var(--red);
+    color: var(--red);
+}
+
+/* ---------- MAIN ---------- */
+.admin-main {
+    flex: 1;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px 30px;
+}
+
+.page-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 13px;
+    border-radius: 30px;
+    background: var(--light-blue);
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.page-heading h1 {
+    margin-bottom: 14px;
+    font-size: clamp(30px, 4vw, 43px);
+    letter-spacing: -1.2px;
+}
+.page-heading h1 span { color: var(--blue); }
+
+.page-heading p {
+    max-width: 590px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ---------- TABS ---------- */
+.tab-nav {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+}
+
+.tab-btn {
+    padding: 13px 22px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.tab-btn:hover { color: var(--blue); }
+.tab-btn.active {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+}
+
+.tab-icon { margin-right: 6px; }
+
+.tab-content { display: none; animation: fadeUp 0.3s ease; }
+.tab-content.active { display: block; }
+
+/* ---------- FILTER BAR ---------- */
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 9px 18px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: white;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.filter-btn:hover { border-color: var(--blue); color: var(--blue); }
+.filter-btn.active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+}
+
+.count {
+    display: inline-block;
+    min-width: 20px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.08);
+    font-size: 11px;
+    text-align: center;
+    margin-left: 4px;
+}
+.filter-btn.active .count { background: rgba(255,255,255,0.25); }
+
+/* ---------- USER CARDS ---------- */
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.user-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.user-card:hover {
+    border-color: #A8C5FF;
+    box-shadow: 0 6px 20px rgba(37,99,235,0.06);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.user-avatar {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--light-blue);
+    color: var(--blue);
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.user-info h4 { font-size: 15px; margin-bottom: 3px; }
+.user-info p { color: var(--muted); font-size: 13px; }
+.user-date { color: #94A3B8; font-size: 11px; }
+
+.user-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+}
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.status-pending  { background: #FEF3C7; color: #92400E; }
+.status-approved { background: #DCFCE7; color: #166534; }
+.status-rejected { background: #FEE2E2; color: #991B1B; }
+
+.user-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: white;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.approve-btn:hover { background: #DCFCE7; border-color: var(--green); color: var(--green); }
+.reject-btn:hover  { background: #FEE2E2; border-color: var(--red); color: var(--red); }
+.make-admin-btn:hover { background: var(--light-blue); border-color: var(--blue); color: var(--blue); }
+
+.admin-tag {
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: var(--blue);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ---------- ANNOUNCEMENTS ---------- */
+.announcement-form-card {
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: white;
+    margin-bottom: 35px;
+    box-shadow: 0 8px 25px rgba(37,99,235,.04);
+}
+
+.announcement-form-card h2 {
+    font-size: 22px;
+    margin-bottom: 6px;
+}
+
+.form-subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+#announcementForm {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#announcementForm label {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+#announcementForm input,
+#announcementForm textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    outline: none;
+    background: #FCFDFF;
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+}
+
+#announcementForm input:focus,
+#announcementForm textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+#announcementForm textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.primary-btn {
+    margin-top: 12px;
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--blue);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+.primary-btn:hover { background: var(--dark-blue); transform: translateY(-1px); }
+.primary-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.existing-announcements h3 {
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+
+.ann-card {
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: white;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+}
+.ann-card:hover { border-color: #A8C5FF; }
+
+.ann-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.ann-header h4 { font-size: 16px; }
+
+.delete-ann {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.delete-ann:hover { background: #FEE2E2; color: var(--red); }
+
+.ann-body {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+}
+
+.ann-link {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 8px 16px;
+    border: 1px solid #DBEAFE;
+    border-radius: 8px;
+    background: var(--light-blue);
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 650;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+.ann-link:hover { background: var(--blue); color: white; }
+
+.ann-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: #94A3B8;
+    font-size: 11px;
+}
+
+/* ---------- EMPTY / LOADING ---------- */
+.empty-state, .loading-state {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+    margin-top: 60px;
+    padding: 23px 10px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 700px) {
+    .navbar { height: auto; padding: 15px 18px; flex-wrap: wrap; gap: 10px; }
+    .admin-email { display: none; }
+    .admin-main { padding: 30px 18px; }
+    .user-card { flex-direction: column; align-items: flex-start; }
+    .user-right { flex-wrap: wrap; width: 100%; }
+    .user-actions { width: 100%; }
+    .tab-nav { flex-wrap: wrap; }
+    .filter-bar { gap: 6px; }
+    .filter-btn { padding: 7px 12px; font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

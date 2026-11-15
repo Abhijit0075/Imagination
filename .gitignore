@@ -1,0 +1,28 @@
+# ============================================
+# NEVER COMMIT THESE TO GITHUB
+# ============================================
+
+# Secret environment variables
+.env
+
+# Local dev database
+_do_not_push/
+
+# Node.js dependencies
+node_modules/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# ============================================
+# THESE ARE SAFE TO COMMIT — everything else
+# ============================================
+# frontend/     ← HTML, CSS, JS, images
+# backend/      ← server.js, db.js, api/
+# vercel.json
+# package.json
+# .env.example
+# README.md

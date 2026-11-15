@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Admin Portal | Imagination</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- Top Navbar -->
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="Dashboard.html" class="logo">Imagination<span></span></a>
+        </div>
+        <div class="nav-right">
+            <span class="admin-badge">TEACHER / ADMIN</span>
+            <span class="admin-email" id="adminEmail"></span>
+            <button class="logout-btn" id="logoutBtn">Sign Out</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+
+        <!-- Page Heading -->
+        <div class="page-heading">
+            <span class="eyebrow">TEACHER ADMINISTRATION</span>
+            <h1><span>Admin Panel</span></h1>
+            <p>Enroll approved students, assign & reset passwords, and post live class links. Outsiders cannot register or access materials.</p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="users">
+                <span class="tab-icon">👥</span> Student Management
+            </button>
+            <button class="tab-btn" data-tab="announcements">
+                <span class="tab-icon">📢</span> Class Links & Announcements
+            </button>
+            <button class="tab-btn" data-tab="questions">
+                <span class="tab-icon">✏️</span> JEE Question Bank
+            </button>
+        </div>
+
+        <!-- ===================== USERS TAB ===================== -->
+        <section class="tab-content active" id="tab-users">
+
+            <!-- ENROLL NEW STUDENT FORM CARD -->
+            <div class="announcement-form-card" style="margin-bottom: 30px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                    <h2>➕ Enroll New Student</h2>
+                </div>
+                <p class="form-subtitle">Create login credentials for your enrolled student. Share the email and password with them directly.</p>
+
+                <form id="createStudentForm" style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+                        <div>
+                            <label for="newStudentName" style="font-size: 13px; font-weight: 650; display: block; margin-bottom: 6px;">Student Full Name</label>
+                            <input id="newStudentName" type="text" placeholder="e.g. Aarav Sharma" required style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 9px; font-size: 14px;">
+                        </div>
+
+                        <div>
+                            <label for="newStudentEmail" style="font-size: 13px; font-weight: 650; display: block; margin-bottom: 6px;">Student Email Address</label>
+                            <input id="newStudentEmail" type="email" placeholder="e.g. aarav@gmail.com" required style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 9px; font-size: 14px;">
+                        </div>
+
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                <label for="newStudentPassword" style="font-size: 13px; font-weight: 650;">Assigned Password</label>
+                                <button type="button" id="btnGenPassword" style="background: none; border: none; color: var(--blue); font-size: 11px; font-weight: 700; cursor: pointer;">🎲 Generate Password</button>
+                            </div>
+                            <input id="newStudentPassword" type="text" placeholder="e.g. Maths@2026" minlength="6" required style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 9px; font-size: 14px; font-family: monospace;">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn" style="margin-top: 8px;">➕ Create & Enroll Student</button>
+                    <p id="enrollFeedback" style="font-size: 13px; font-weight: 600; min-height: 18px; margin: 4px 0 0;"></p>
+                </form>
+            </div>
+
+            <!-- Filter buttons -->
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">
+                    All Enrolled (<span id="allCount">0</span>)
+                </button>
+                <button class="filter-btn" data-filter="approved">
+                    Active Students (<span id="approvedCount">0</span>)
+                </button>
+                <button class="filter-btn" data-filter="rejected">
+                    Suspended / Inactive (<span id="rejectedCount">0</span>)
+                </button>
+            </div>
+
+            <!-- User list -->
+            <div class="user-list" id="userList">
+                <div class="loading-state">Loading enrolled students from database…</div>
+            </div>
+        </section>
+
+        <!-- ================ ANNOUNCEMENTS TAB ================ -->
+        <section class="tab-content" id="tab-announcements">
+
+            <!-- Post new announcement -->
+            <div class="announcement-form-card">
+                <h2>Post Class Link or Study Material</h2>
+                <p class="form-subtitle">Share Google Meet / Zoom links, homework notes, test updates, or important announcements with approved students.</p>
+
+                <form id="announcementForm">
+                    <label for="annTitle">Title / Topic</label>
+                    <input id="annTitle" type="text" placeholder="e.g. Calculus Doubt Session - Class Link" required>
+
+                    <label for="annBody">Message Details</label>
+                    <textarea id="annBody" rows="3" placeholder="Provide lecture timings, chapters covered, instructions..." required></textarea>
+
+                    <label for="annLink">Class / Meeting Link (optional)</label>
+                    <input id="annLink" type="url" placeholder="https://meet.google.com/... or https://zoom.us/...">
+
+                    <label for="annLinkLabel">Link Button Text (optional)</label>
+                    <input id="annLinkLabel" type="text" placeholder="e.g. Join Live Class Now">
+
+                    <button type="submit" class="primary-btn">📢 Post to Student Dashboard</button>
+                </form>
+            </div>
+
+            <!-- Existing announcements -->
+            <div class="existing-announcements">
+                <h3>Live Announcements in Database</h3>
+                <div id="announcementList">
+                    <div class="loading-state">Loading announcements from database…</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================ QUESTION BANK TAB ================ -->
+        <section class="tab-content" id="tab-questions">
+
+            <!-- Add Question Form Card -->
+            <div class="announcement-form-card">
+                <h2>➕ Add Question to Any JEE Chapter</h2>
+                <p class="form-subtitle">Add Single Choice, Multiple Choice (One or more correct), or Numerical Type problems with step-by-step solutions for your students.</p>
+
+                <form id="addQuestionForm" style="display:flex; flex-direction:column; gap:14px;">
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px;">
+                        <div>
+                            <label for="qChapterSelect" style="font-size:13px; font-weight:650; display:block; margin-bottom:6px;">Select JEE Chapter</label>
+                            <select id="qChapterSelect" required style="width:100%; padding:12px; border:1px solid var(--border); border-radius:9px; font-size:14px; background:white;">
+                                <option value="">-- Choose Chapter --</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="qTypeSelect" style="font-size:13px; font-weight:650; display:block; margin-bottom:6px;">Question Type</label>
+                            <select id="qTypeSelect" required style="width:100%; padding:12px; border:1px solid var(--border); border-radius:9px; font-size:14px; background:white;">
+                                <option value="single">Single Correct MCQ (4 Options, 1 Correct)</option>
+                                <option value="multiple">Multiple Choice MSQ (One or More Options Correct)</option>
+                                <option value="numerical">Numerical Value Type (Integer or Decimal)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="qDifficultySelect" style="font-size:13px; font-weight:650; display:block; margin-bottom:6px;">Target Level</label>
+                            <select id="qDifficultySelect" required style="width:100%; padding:12px; border:1px solid var(--border); border-radius:9px; font-size:14px; background:white;">
+                                <option value="JEE Main">JEE Main</option>
+                                <option value="JEE Advanced">JEE Advanced</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="qProblemText" style="font-size:13px; font-weight:650; display:block; margin-bottom:6px;">Problem Statement / Question Text</label>
+                        <textarea id="qProblemText" rows="3" placeholder="Enter problem text, formulas, equations... e.g. Evaluate the limit: lim (x → 0) [sin(3x) / x]" required style="width:100%; padding:12px; border:1px solid var(--border); border-radius:9px; font-size:14px;"></textarea>
+                    </div>
+
+                    <!-- Dynamic Options Container -->
+                    <div id="dynamicOptionsArea">
+                        <!-- Swapped dynamically based on Question Type -->
+                    </div>
+
+                    <div>
+                        <label for="qExplanation" style="font-size:13px; font-weight:650; display:block; margin-bottom:6px;">Step-by-Step Solution & Explanation (Shown after student attempts)</label>
+                        <textarea id="qExplanation" rows="3" placeholder="Write detailed mathematical proof, method, steps, and formulas used..." required style="width:100%; padding:12px; border:1px solid var(--border); border-radius:9px; font-size:14px;"></textarea>
+                    </div>
+
+                    <button type="submit" class="primary-btn" id="btnSaveQuestion">➕ Save Question to Chapter</button>
+                    <p id="qFormFeedback" style="font-size:13px; font-weight:600; min-height:18px; margin:4px 0 0;"></p>
+                </form>
+            </div>
+
+            <!-- Existing Questions List -->
+            <div class="existing-announcements">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+                    <h3>Live Question Bank in Database</h3>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <label for="filterQuestionChapter" style="font-size:13px; font-weight:650; color:var(--muted);">Filter Chapter:</label>
+                        <select id="filterQuestionChapter" style="padding:8px 12px; border:1px solid var(--border); border-radius:8px; font-size:13px; background:white;">
+                            <option value="">All Chapters</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="adminQuestionList">
+                    <div class="loading-state">Loading questions from database…</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © 2026 Imagination. Learn smarter, achieve more.
+    </footer>
+
+    <!-- Client-side Auth Guard & Admin Logic -->
+    <script src="auth.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

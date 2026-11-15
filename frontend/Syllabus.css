@@ -1,0 +1,387 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --blue: #2563EB;
+    --dark-blue: #1D4ED8;
+    --light-blue: #EFF6FF;
+    --text: #172033;
+    --muted: #64748B;
+    --border: #E2E8F0;
+    --white: #FFFFFF;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #F8FAFF;
+    color: var(--text);
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+    min-height: 76px;
+    padding: 0 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    background: var(--white);
+    border-bottom: 1px solid #E8EEF8;
+}
+
+.logo {
+    color: var(--text);
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--blue);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    position: relative;
+    padding: 8px 0;
+    color: #526078;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--blue);
+}
+
+.nav-links a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--blue);
+    border-radius: 5px;
+}
+
+/* ---------- MAIN SECTION ---------- */
+.syllabus-section {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 85px 30px 65px;
+    flex: 1;
+}
+
+/* ---------- HEADING ---------- */
+.section-heading {
+    max-width: 680px;
+    margin: 0 auto 55px;
+    text-align: center;
+    animation: fadeUp 0.7s ease both;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 8px 15px;
+    border: 1px solid #DBEAFE;
+    border-radius: 50px;
+    background: var(--light-blue);
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.section-heading h1 {
+    margin-bottom: 17px;
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+}
+
+.section-heading h1 span {
+    color: var(--blue);
+}
+
+.section-heading p {
+    max-width: 570px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* ---------- TWO-CARD LAYOUT ---------- */
+.syllabus-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+/* ---------- SYLLABUS CARD ---------- */
+.syllabus-card {
+    position: relative;
+    min-height: 300px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--white);
+    color: inherit;
+    text-decoration: none;
+    box-shadow: 0 8px 25px rgba(28, 55, 100, 0.035);
+    animation: fadeUp 0.7s ease both;
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.syllabus-card:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.syllabus-card::before {
+    content: "";
+    position: absolute;
+    top: -75px;
+    right: -75px;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: var(--light-blue);
+    transition: transform 0.45s ease;
+}
+
+.syllabus-card:hover {
+    transform: translateY(-8px);
+    border-color: #A8C5FF;
+    box-shadow: 0 20px 45px rgba(37, 99, 235, 0.12);
+}
+
+.syllabus-card:hover::before {
+    transform: scale(1.35);
+}
+
+/* ---------- CARD TOP ---------- */
+.card-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.class-icon {
+    width: 100px;
+    height: 75px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #D7E5FF;
+    border-radius: 17px;
+    background: var(--light-blue);
+    color: var(--blue);
+    font-size: 28px;
+    font-weight: 800;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.syllabus-card:hover .class-icon {
+    background: var(--blue);
+    color: var(--white);
+    transform: rotate(-5deg);
+}
+
+.card-tag {
+    padding: 7px 11px;
+    border-radius: 6px;
+    background: #F1F5F9;
+    color: #64748B;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* ---------- CARD CONTENT ---------- */
+.card-content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+}
+
+.card-content h2 {
+    margin-bottom: 12px;
+    font-size: 26px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+}
+
+.card-content p {
+    max-width: 330px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* ---------- CARD FOOTER ---------- */
+.card-footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #EDF1F7;
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 750;
+}
+
+.arrow {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--light-blue);
+    font-size: 19px;
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.syllabus-card:hover .arrow {
+    background: var(--blue);
+    color: var(--white);
+    transform: translate(3px, -3px);
+}
+
+/* ---------- BOTTOM NOTE ---------- */
+.bottom-note {
+    margin-top: 48px;
+    color: #7B879B;
+    font-size: 13px;
+    text-align: center;
+}
+
+.bottom-note span {
+    margin-right: 5px;
+    color: var(--blue);
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+    padding: 23px 20px;
+    border-top: 1px solid #E8EEF8;
+    background: var(--white);
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ---------- ANIMATION ---------- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 700px) {
+    .navbar {
+        padding: 18px 5%;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .nav-links {
+        width: 100%;
+        gap: 22px;
+        overflow-x: auto;
+        padding-bottom: 3px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .syllabus-section {
+        padding: 55px 20px 45px;
+    }
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+    .section-heading p {
+        font-size: 14px;
+    }
+
+    .syllabus-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 440px;
+    }
+
+    .syllabus-card {
+        min-height: 275px;
+        padding: 25px;
+    }
+
+    .bottom-note {
+        margin-top: 35px;
+        line-height: 1.7;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
