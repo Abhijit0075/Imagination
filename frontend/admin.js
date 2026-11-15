@@ -322,6 +322,11 @@ authReady.then(async (currentUser) => {
                 });
             });
 
+            // Render MathJax formulas in admin question list
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([adminQuestionList]).catch(() => {});
+            }
+
         } catch (err) {
             console.error("Error fetching announcements:", err);
             container.innerHTML = '<div class="empty-state">Error loading announcements.</div>';
@@ -629,6 +634,11 @@ authReady.then(async (currentUser) => {
                     }
                 });
             });
+
+            // Render MathJax formulas in admin question list
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([adminQuestionList]).catch(() => {});
+            }
 
         } catch (err) {
             console.error('Error loading questions:', err);

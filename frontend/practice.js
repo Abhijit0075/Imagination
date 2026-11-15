@@ -242,6 +242,11 @@ authReady.then(async (currentUser) => {
                 numInput.focus();
             }
         }
+
+        // Render MathJax formulas if present
+        if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([qBox]).catch(() => {});
+        }
     }
 
     /* ============================================================
@@ -305,6 +310,11 @@ authReady.then(async (currentUser) => {
                 </div>
             `;
             feedbackBox.style.display = "block";
+
+            // Render MathJax formulas in solution if present
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([feedbackBox]).catch(() => {});
+            }
 
             submitBtn.textContent = isCorrect ? "✓ Answer Checked (Correct)" : "✓ Answer Checked (Incorrect)";
 

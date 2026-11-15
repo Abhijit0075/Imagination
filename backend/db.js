@@ -204,13 +204,20 @@ class Database {
         if (!uri) throw new Error('MONGODB_URI environment variable is missing.');
 
         if (!cachedClient) {
-            cachedClient = new MongoClient(uri, {
+            const client = new MongoClient(uri, {
                 maxPoolSize: 50, // Connection pooling for 200+ concurrent requests
                 serverSelectionTimeoutMS: 5000,
                 connectTimeoutMS: 10000
             });
-            await cachedClient.connect();
-            console.log('[DB-Mongo] Connected to MongoDB Atlas cluster successfully.');
+            try {
+                await client.connect();
+                cachedClient = client;
+                console.log('[DB-Mongo] Connected to MongoDB Atlas cluster successfully.');
+            } catch (connErr) {
+                cachedClient = null;
+                cachedDb = null;
+                throw connErr;
+            }
         }
 
         cachedDb = cachedClient.db('imagination');

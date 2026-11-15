@@ -163,7 +163,9 @@ app.post('/api/auth/login', async (req, res) => {
         });
     } catch (err) {
         console.error('Login error:', err);
-        res.status(500).json({ error: 'Internal server error during login.' });
+        res.status(500).json({
+            error: 'Database connection error: ' + (err.message || 'Internal server error.')
+        });
     }
 });
 
