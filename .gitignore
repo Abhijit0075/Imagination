@@ -12,9 +12,6 @@ _do_not_push/
 node_modules/
 
 # Personal files & photos
-profile_photo.jpg
-Santimoy_Mandal_CV.*
-*.tex
 
 # OS / editor junk
 .DS_Store
@@ -22,9 +19,7 @@ Thumbs.db
 *.log
 *.tmp
 
-# ============================================
-# THESE ARE SAFE TO COMMIT — everything else
-# ============================================
+
 # frontend/     ← HTML, CSS, JS, images
 # backend/      ← server.js, db.js, api/
 # vercel.json
