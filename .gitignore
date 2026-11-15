@@ -11,6 +11,11 @@ _do_not_push/
 # Node.js dependencies
 node_modules/
 
+# Personal files & photos
+profile_photo.jpg
+Santimoy_Mandal_CV.*
+*.tex
+
 # OS / editor junk
 .DS_Store
 Thumbs.db
