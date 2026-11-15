@@ -158,22 +158,36 @@ class Database {
     }
 
     seedInitialAdminLocal() {
-        const hasAdmin = this.localData.users.some(u => u.role === 'admin');
-        if (!hasAdmin) {
-            const adminEmail = (process.env.ADMIN_EMAIL || 'admin@imagination.com').toLowerCase();
-            const adminPass = process.env.ADMIN_PASSWORD || 'Admin@123';
-            const hashed = bcrypt.hashSync(adminPass, 10);
+        const admin1Email = (process.env.ADMIN_EMAIL || 'admin@imagination.com').toLowerCase().trim();
+        const admin1Pass = process.env.ADMIN_PASSWORD || 'Admin@123';
+        if (!this.localData.users.some(u => u.email === admin1Email)) {
             this.localData.users.push({
                 id: crypto.randomUUID(),
-                name: 'Teacher / Admin',
-                email: adminEmail,
-                password: hashed,
+                name: 'Primary Admin',
+                email: admin1Email,
+                password: bcrypt.hashSync(admin1Pass, 10),
                 role: 'admin',
                 status: 'approved',
                 createdAt: new Date().toISOString()
             });
             this.saveLocal();
-            console.log(`[DB-Local] Seeded default admin account: ${adminEmail}`);
+            console.log(`[DB-Local] Seeded admin account: ${admin1Email}`);
+        }
+
+        const admin2Email = (process.env.ADMIN_EMAIL_2 || '').toLowerCase().trim();
+        const admin2Pass = process.env.ADMIN_PASSWORD_2;
+        if (admin2Email && admin2Pass && !this.localData.users.some(u => u.email === admin2Email)) {
+            this.localData.users.push({
+                id: crypto.randomUUID(),
+                name: 'Secondary Admin',
+                email: admin2Email,
+                password: bcrypt.hashSync(admin2Pass, 10),
+                role: 'admin',
+                status: 'approved',
+                createdAt: new Date().toISOString()
+            });
+            this.saveLocal();
+            console.log(`[DB-Local] Seeded secondary admin account: ${admin2Email}`);
         }
     }
 
@@ -230,21 +244,40 @@ class Database {
 
     async seedInitialAdminMongo(db) {
         try {
-            const adminCount = await db.collection('users').countDocuments({ role: 'admin' });
-            if (adminCount === 0) {
-                const adminEmail = (process.env.ADMIN_EMAIL || 'admin@imagination.com').toLowerCase();
-                const adminPass = process.env.ADMIN_PASSWORD || 'Admin@123';
-                const hashed = await bcrypt.hash(adminPass, 10);
+            const admin1Email = (process.env.ADMIN_EMAIL || 'admin@imagination.com').toLowerCase().trim();
+            const admin1Pass = process.env.ADMIN_PASSWORD || 'Admin@123';
+            const user1 = await db.collection('users').findOne({ email: admin1Email });
+            if (!user1) {
+                const hashed1 = await bcrypt.hash(admin1Pass, 10);
                 await db.collection('users').insertOne({
                     id: crypto.randomUUID(),
-                    name: 'Teacher / Admin',
-                    email: adminEmail,
-                    password: hashed,
+                    name: 'Primary Admin',
+                    email: admin1Email,
+                    password: hashed1,
                     role: 'admin',
                     status: 'approved',
                     createdAt: new Date().toISOString()
                 });
-                console.log(`[DB-Mongo] Seeded initial admin account: ${adminEmail}`);
+                console.log(`[DB-Mongo] Seeded primary admin account: ${admin1Email}`);
+            }
+
+            const admin2Email = (process.env.ADMIN_EMAIL_2 || '').toLowerCase().trim();
+            const admin2Pass = process.env.ADMIN_PASSWORD_2;
+            if (admin2Email && admin2Pass) {
+                const user2 = await db.collection('users').findOne({ email: admin2Email });
+                if (!user2) {
+                    const hashed2 = await bcrypt.hash(admin2Pass, 10);
+                    await db.collection('users').insertOne({
+                        id: crypto.randomUUID(),
+                        name: 'Secondary Admin',
+                        email: admin2Email,
+                        password: hashed2,
+                        role: 'admin',
+                        status: 'approved',
+                        createdAt: new Date().toISOString()
+                    });
+                    console.log(`[DB-Mongo] Seeded secondary admin account: ${admin2Email}`);
+                }
             }
         } catch (err) {
             console.error('[DB-Mongo] Error seeding admin in MongoDB:', err);
