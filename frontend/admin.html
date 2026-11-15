@@ -21,8 +21,13 @@
 
     <!-- Top Navbar -->
     <header class="navbar">
-        <div class="nav-left">
-            <a href="Dashboard.html" class="logo">Imagination<span></span></a>
+        <div class="nav-left" style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+            <a href="/" class="logo">Imagination<span></span></a>
+            <a href="/" class="nav-link" style="color:#64748B; text-decoration:none; font-size:13px; font-weight:600;">⌂ Home</a>
+            <a href="Dashboard.html" class="nav-link" style="color:#64748B; text-decoration:none; font-size:13px; font-weight:600;">📊 Student Dashboard</a>
+            <a href="Practice.html" class="nav-link" style="color:#64748B; text-decoration:none; font-size:13px; font-weight:600;">🧠 Practice Arena</a>
+            <a href="Syllabus.html" class="nav-link" style="color:#64748B; text-decoration:none; font-size:13px; font-weight:600;">📚 Syllabus</a>
+            <span style="background:#7C3AED; color:white; padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700;">⚙️ ADMIN MODE</span>
         </div>
         <div class="nav-right">
             <span class="admin-badge">TEACHER / ADMIN</span>
@@ -33,6 +38,20 @@
 
     <!-- Main Content -->
     <main class="admin-main">
+
+        <!-- Student Experience Preview Banner -->
+        <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:12px; padding:12px 18px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:20px;">🎓</span>
+                <span style="font-size:13.5px; color:#166534; font-weight:600;">
+                    Admins can view and use all student pages! You have full access to the Student Dashboard, Lecture Planner, and Practice Arena plus this Admin Panel.
+                </span>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <a href="Dashboard.html" style="padding:7px 14px; background:#fff; border:1px solid #86EFAC; border-radius:8px; color:#15803D; font-size:12.5px; font-weight:700; text-decoration:none;">Open Student Dashboard →</a>
+                <a href="Practice.html" style="padding:7px 14px; background:#16A34A; color:#fff; border-radius:8px; font-size:12.5px; font-weight:700; text-decoration:none;">Open Practice Arena →</a>
+            </div>
+        </div>
 
         <!-- Page Heading -->
         <div class="page-heading">

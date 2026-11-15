@@ -14,6 +14,12 @@ authReady.then(async (currentUser) => {
     let allChapters = [];
     let currentCategory = "all";
 
+    // Reveal Admin link if logged in user is admin
+    if (currentUser && currentUser.role === "admin") {
+        const adminNav = document.getElementById("adminNavPill");
+        if (adminNav) adminNav.style.display = "inline-flex";
+    }
+
     let currentChapter = null;
     let questions = [];
     let currentIndex = 0;

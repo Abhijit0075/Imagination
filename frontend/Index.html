@@ -74,7 +74,7 @@
 
             <nav class="dashboard-sidebar-nav">
 
-                <a href="index.html" class="dashboard-nav-link active">
+                <a href="/" class="dashboard-nav-link active">
                     <span class="dashboard-nav-icon">⌂</span>
                     <span>Home</span>
                 </a>
@@ -209,12 +209,19 @@
                     const data = await res.json();
                     if (data.user && data.user.status === 'approved') {
                         const firstName = (data.user.name || 'User').split(' ')[0];
+                        const adminButton = data.user.role === 'admin'
+                            ? `<a href="admin.html" class="button" style="text-decoration:none; display:inline-block; padding:8px 16px; background:#7C3AED;">
+                                   <span style="color:white; font-size:13px; font-weight:700;">⚙️ Admin</span>
+                               </a>`
+                            : '';
+
                         authButtons.innerHTML = `
-                            <div style="display:flex; align-items:center; gap:12px;">
+                            <div style="display:flex; align-items:center; gap:10px;">
                                 <span style="font-size:13px; font-weight:600; color:#526078;">Hi, ${firstName}</span>
-                                <a href="Dashboard.html" class="button" style="text-decoration:none; display:inline-block; padding:10px 20px;">
+                                <a href="Dashboard.html" class="button" style="text-decoration:none; display:inline-block; padding:8px 18px;">
                                     <span style="color:white;">Dashboard</span>
                                 </a>
+                                ${adminButton}
                             </div>
                         `;
                     }

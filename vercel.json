@@ -1,16 +1,27 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index.js" },
-    { "source": "/api",      "destination": "/api/index.js" },
-    { "source": "/",          "destination": "/frontend/Index.html" },
-    { "source": "/login",     "destination": "/frontend/LogIn.html" },
-    { "source": "/dashboard", "destination": "/frontend/Dashboard.html" },
-    { "source": "/admin",     "destination": "/frontend/admin.html" },
-    { "source": "/practice",  "destination": "/frontend/Practice.html" },
-    { "source": "/syllabus",  "destination": "/frontend/Syllabus.html" },
+    { "source": "/api/(.*)",        "destination": "/api/index.js" },
+    { "source": "/api",             "destination": "/api/index.js" },
+    { "source": "/",                "destination": "/frontend/index.html" },
+    { "source": "/index.html",      "destination": "/frontend/index.html" },
+    { "source": "/Index.html",      "destination": "/frontend/index.html" },
+    { "source": "/login",           "destination": "/frontend/LogIn.html" },
+    { "source": "/login.html",      "destination": "/frontend/LogIn.html" },
+    { "source": "/LogIn.html",      "destination": "/frontend/LogIn.html" },
+    { "source": "/dashboard",       "destination": "/frontend/Dashboard.html" },
+    { "source": "/dashboard.html",   "destination": "/frontend/Dashboard.html" },
+    { "source": "/Dashboard.html",   "destination": "/frontend/Dashboard.html" },
+    { "source": "/admin",           "destination": "/frontend/admin.html" },
+    { "source": "/admin.html",       "destination": "/frontend/admin.html" },
+    { "source": "/practice",        "destination": "/frontend/Practice.html" },
+    { "source": "/practice.html",   "destination": "/frontend/Practice.html" },
+    { "source": "/Practice.html",   "destination": "/frontend/Practice.html" },
+    { "source": "/syllabus",        "destination": "/frontend/Syllabus.html" },
+    { "source": "/syllabus.html",   "destination": "/frontend/Syllabus.html" },
+    { "source": "/Syllabus.html",   "destination": "/frontend/Syllabus.html" },
     { "source": "/(.*\\.(?:css|js|png|jpg|jpeg|gif|svg|ico|pdf|webp|woff|woff2|ttf))", "destination": "/frontend/$1" },
-    { "source": "/(.*\\.html)", "destination": "/frontend/$1" }
+    { "source": "/(.*\\.html)",     "destination": "/frontend/$1" }
   ],
   "headers": [
     {

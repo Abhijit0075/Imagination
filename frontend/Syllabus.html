@@ -12,15 +12,16 @@
 
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="index.html" class="logo">
+        <a href="/" class="logo">
             Imagination<span></span>
         </a>
 
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="/">Home</a>
             <a href="Dashboard.html#dashboard">Dashboard</a>
-            <a href="Dashboard.html#practice">Practice</a>
+            <a href="Practice.html">Practice</a>
             <a href="Syllabus.html" class="active">Syllabus</a>
+            <a href="admin.html" id="adminNavPill" style="display:none; background:#7C3AED; color:white; padding:5px 12px; border-radius:8px; font-weight:700; font-size:12.5px; text-decoration:none;">⚙️ Admin Panel</a>
         </div>
     </nav>
 
@@ -162,6 +163,14 @@
 
     <!-- Protected Page Auth Guard -->
     <script src="auth.js"></script>
+    <script>
+        authReady.then(currentUser => {
+            if (currentUser && currentUser.role === 'admin') {
+                const adminPill = document.getElementById('adminNavPill');
+                if (adminPill) adminPill.style.display = 'inline-flex';
+            }
+        });
+    </script>
 
 </body>
 </html>

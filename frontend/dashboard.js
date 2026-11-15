@@ -96,6 +96,9 @@ authReady.then(async (currentUser) => {
 
     /* ---------- Teacher / Admin privileges ---------- */
     if (currentUser.role === "admin") {
+        const topAdmin = document.getElementById("topAdminBtn");
+        if (topAdmin) topAdmin.style.display = "inline-flex";
+
         const adminLink = document.getElementById("adminNavLink");
         if (adminLink) adminLink.style.display = "";
 
